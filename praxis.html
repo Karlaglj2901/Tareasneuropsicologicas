@@ -1,0 +1,77 @@
+
+
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Praxias Interactivo con Imágenes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        h1, p {
+            text-align: center;
+        }
+        .gestures {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .gesture {
+            width: 300px;
+            height: 300px;
+            background-color: #007BFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .gesture img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .gesture:hover {
+            transform: scale(1.1);
+        }
+        .completed {
+            background-color: #28a745 !important;
+        }
+    </style>
+</head>
+<body>
+    <h1>Praxias Interactivo con Imágenes</h1>
+    <p>Realice los siguientes gestos:</p>
+    <div class="gestures">
+        <div class="gesture" onclick="toggleCompletion(this)">
+            <img src="gesto1.jpg" alt="Gesto 1">
+        </div>
+        <div class="gesture" onclick="toggleCompletion(this)">
+            <img src="gesto2.jpg" alt="Gesto 2">
+        </div>
+        <div class="gesture" onclick="toggleCompletion(this)">
+            <img src="gesto3.jpg" alt="Gesto 3">
+        </div>
+       <div class="gesture" onclick="toggleCompletion(this)">
+            <img src="gesto4.jpg" alt="Gesto 4">
+        </div>
+<div class="gesture" onclick="toggleCompletion(this)">
+            <img src="gesto5.jpg" alt="Gesto 5">
+        </div>
+
+
+    </div>
+    <script>
+        function toggleCompletion(element) {
+            element.classList.toggle('completed');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Memoria Sensorial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        .figure {
+            margin: 20px;
+        }
+        .figure img {
+            width: 200px;
+            height: auto;
+        }
+        input {
+            width: 50px;
+            padding: 5px;
+            margin: 10px;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Memoria Sensorial</h1>
+        <p>Observe la figura y diga cuántos cubos forman la figura, incluyendo los que no puede ver directamente.</p>
+        <div class="figure">
+            <img id="figure-image" src="figure1.png" alt="Figura de cubos">
+        </div>
+        <input type="number" id="cube-count" placeholder="Cantidad">
+        <button onclick="checkAnswer()">Comprobar</button>
+        <p id="result"></p>
+    </div>
+    <script>
+        const figures = [
+            { src: 'figure1.png', count: 3 },
+            { src: 'figure2.png', count: 8 },
+            { src: 'figure3.png', count: 12 },
+            { src: 'figure4.png', count: 4 },
+            { src: 'figure5.png', count: 2 }
+        ];
+
+        let currentFigureIndex = 0;
+
+        function showFigure(index) {
+            const figure = figures[index];
+            document.getElementById('figure-image').src = figure.src;
+            document.getElementById('cube-count').value = '';
+            document.getElementById('result').textContent = '';
+        }
+
+        function checkAnswer() {
+            const userCount = parseInt(document.getElementById('cube-count').value, 10);
+            const correctCount = figures[currentFigureIndex].count;
+            if (userCount === correctCount) {
+                document.getElementById('result').textContent = '¡Correcto!';
+                document.getElementById('result').style.color = 'green';
+                nextFigure();
+            } else {
+                document.getElementById('result').textContent = 'Incorrecto. Intente nuevamente.';
+                document.getElementById('result').style.color = 'red';
+            }
+        }
+
+        function nextFigure() {
+            currentFigureIndex = (currentFigureIndex + 1) % figures.length;
+            setTimeout(() => showFigure(currentFigureIndex), 1000);
+        }
+
+        // Inicializar el juego mostrando la primera figura
+        showFigure(currentFigureIndex);
+    </script>
+</body>
+</html>

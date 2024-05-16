@@ -1,0 +1,76 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lenguaje</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        h1, p {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .image {
+            width: 200px;
+            height: auto;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lenguaje</h1>
+    <p>Encuentra la imagen correspondiente al objeto:</p>
+    <p id="objectName">Nombre del Objeto</p>
+    <div class="image-container">
+        <img src="objeto1.jpg" alt="Imagen 1" class="image" onclick="checkAnswer('objeto1.jpg')">
+        <img src="objeto2.jpg" alt="Imagen 2" class="image" onclick="checkAnswer('objeto2.jpg')">
+        <img src="objeto3.jpg" alt="Imagen 3" class="image" onclick="checkAnswer('objeto3.jpg')">
+        <img src="objeto4.jpg" alt="Imagen 1" class="image" onclick="checkAnswer('objeto4.jpg')">
+        <img src="objeto5.jpg" alt="Imagen 2" class="image" onclick="checkAnswer('objeto5.jpg')">
+        <img src="objeto6.jpg" alt="Imagen 3" class="image" onclick="checkAnswer('objeto6.jpg')">
+    </div>
+    <script>
+         var objectNames = ["Nombre Pelota", "Nombre Bicicleta", "Nombre Libro" ,"Nombre Mano", "Nombre Dulce", "Nombre Mesa"]; // Nombres de los objetos
+        var correctImageIndex = Math.floor(Math.random() * objectNames.length); // Índice de la imagen correcta
+        var correctImageName = "objeto" + (correctImageIndex + 1) + ".jpg"; // Nombre de la imagen correcta
+        var currentObjectName = objectNames[correctImageIndex]; // Nombre del objeto actual
+
+        // Mostrar el nombre del objeto
+        document.getElementById("objectName").textContent = currentObjectName;
+
+        // Función para verificar la respuesta del usuario
+        function checkAnswer(selectedImageName) {
+            if (selectedImageName === correctImageName) {
+                alert("¡Respuesta Correcta!");
+                // Seleccionar un nuevo objeto
+                selectNewObject();
+            } else {
+                alert("Respuesta Incorrecta. Inténtalo de nuevo.");
+            }
+        }
+
+        // Función para seleccionar un nuevo objeto
+        function selectNewObject() {
+            // Seleccionar un nuevo nombre de objeto y su correspondiente imagen
+            correctImageIndex = Math.floor(Math.random() * objectNames.length);
+            correctImageName = "objeto" + (correctImageIndex + 1) + ".jpg";
+            currentObjectName = objectNames[correctImageIndex];
+            // Mostrar el nombre del nuevo objeto
+            document.getElementById("objectName").textContent = currentObjectName;
+        }
+    </script>
+</body>
+</html>
